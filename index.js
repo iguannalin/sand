@@ -46,7 +46,7 @@ window.addEventListener("load", () => {
         if (Math.random() > 0.8) return; // stagger movements so it's non-linear
         p.style.top = p.offsetTop + yInc +"px";
       } else {
-        if (p.offsetTop != offsetHeight) {
+        if (p.offsetTop != (offsetHeight+200)) {
           p.style.left = p.offsetLeft + (xInc*2) +"px";
           newPoints.push(p);
         } else {
@@ -62,10 +62,7 @@ window.addEventListener("load", () => {
   // all sensor orientation code below from -- https://sensor-js.xyz/demo.html
   function handleOrientation(event) {
     // alpha = x, beta = y, gamma = z
-    if (Math.abs(event.alpha - orientation.alpha) < 10) {
-      // do nothing
-      xInc = 0;
-    } else if (event.alpha > orientation.alpha) {
+    if (event.alpha > orientation.alpha) {
       console.log("moving left");
       xInc = -1;
       orientation.alpha = event.alpha;
