@@ -45,18 +45,24 @@ window.addEventListener("load", () => {
   // all sensor orientation code below from -- https://sensor-js.xyz/demo.html
   function handleOrientation(event) {
     // alpha = x, beta = y, gamma = z
-    if (event.alpha > orientation.alpha) {
+    if (Math.abs(event.alpha - orientation.alpha) < 10) {
+      // do nothing
+    } else if (event.alpha > orientation.alpha) {
       xInc = 1;
+      orientation.alpha = event.alpha;
     } else {
       xInc = -1;
+      orientation.alpha = event.alpha;
     }
-    if (event.beta > orientation.beta) {
+    if (Math.abs(event.beta - orientation.beta) < 10) {
+      // do nothing
+    } else if (event.beta > orientation.beta) {
       yInc = 1;
+      orientation.beta = event.beta;
     } else {
       yInc = -1;
+      orientation.beta = event.beta;
     }
-    orientation.alpha = event.alpha;
-    orientation.beta = event.beta;
     if (!isMoving) handleMovePoints();
   }
 
