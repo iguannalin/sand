@@ -23,7 +23,7 @@ window.addEventListener("load", () => {
 
   const container = document.getElementById("container");
   const start = document.getElementById("start");
-  if (!hasTouchScreen) start.style.display = "none";
+  // if (!hasTouchScreen) start.style.display = "none";
 
   let points = [];
   let orientation = {alpha:0,beta:0};
@@ -37,7 +37,7 @@ window.addEventListener("load", () => {
     let newPoints = [];
     isMoving = true;
     points.forEach((p, i) => {
-      if (!hasTouchScreen || !DeviceMotionEvent) { // desktop doesn't have sensor, so just move linearly
+      // if (!hasTouchScreen || !DeviceMotionEvent) { // desktop doesn't have sensor, so just move linearly
         if (p.offsetTop != offsetHeight) newPoints.push(p);
         else { // place in staggered final positions at the bottom of page
           p.style.top = p.offsetTop - Math.random()*(i%15) +"px";
@@ -45,13 +45,13 @@ window.addEventListener("load", () => {
         }
         if (Math.random() > 0.8) return; // stagger movements so it's non-linear
         p.style.top = p.offsetTop + yInc +"px";
-      } else {
-        if (p.offsetTop != (offsetHeight+200)) {
-          p.style.left = Math.max(0, Math.min(p.offsetLeft + xInc, offsetWidth)) +"px";
-          newPoints.push(p);
-        }
-        p.style.top = p.offsetTop + yInc +"px";
-      }
+    //   } else {
+    //     if (p.offsetTop != (offsetHeight+200)) {
+    //       p.style.left = Math.max(0, Math.min(p.offsetLeft + xInc, offsetWidth)) +"px";
+    //       newPoints.push(p);
+    //     }
+    //     p.style.top = p.offsetTop + yInc +"px";
+    //   }
     });
     points = newPoints;
     isMoving = false;
@@ -89,26 +89,26 @@ window.addEventListener("load", () => {
     if (!isMoving) handleMovePoints();
   }
 
-  let isRunning = false;
-  start.onclick = function(e) {
-    e.preventDefault();
-    // Request permission for iOS 13+ devices
-    if (
-      DeviceMotionEvent &&
-      typeof DeviceMotionEvent.requestPermission === "function"
-    ) {
-      DeviceMotionEvent.requestPermission();
-    }
+  // let isRunning = false;
+  // start.onclick = function(e) {
+  //   e.preventDefault();
+  //   // Request permission for iOS 13+ devices
+  //   if (
+  //     DeviceMotionEvent &&
+  //     typeof DeviceMotionEvent.requestPermission === "function"
+  //   ) {
+  //     DeviceMotionEvent.requestPermission();
+  //   }
     
-    if (isRunning) {
-      window.removeEventListener("deviceorientation", handleOrientation);
-      isRunning = false;
-    } else {
-      window.addEventListener("deviceorientation", handleOrientation);
-      start.style.visibility = "hidden";
-      isRunning = true;
-    }
-  };
+  //   if (isRunning) {
+  //     window.removeEventListener("deviceorientation", handleOrientation);
+  //     isRunning = false;
+  //   } else {
+  //     window.addEventListener("deviceorientation", handleOrientation);
+  //     start.style.visibility = "hidden";
+  //     isRunning = true;
+  //   }
+  // };
 
   setInterval(() => {
     const span = document.createElement("span");
@@ -118,5 +118,5 @@ window.addEventListener("load", () => {
     points.push(span);
     container.appendChild(span);
   }, 1000);
-  if (!hasTouchScreen) setInterval(handleMovePoints, 10);
+  setInterval(handleMovePoints, 10);
 });
