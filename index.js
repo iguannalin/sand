@@ -40,7 +40,7 @@ window.addEventListener("load", () => {
       console.log({hasTouchScreen, DeviceMotionEvent})
       if (!hasTouchScreen || !DeviceMotionEvent) { // desktop doesn't have sensor, so just move linearly
         if (p.offsetTop != offsetHeight) newPoints.push(p);
-        else {
+        else { // place in staggered final positions at the bottom of page
           p.style.top = p.offsetTop - Math.random()*(i%15) +"px";
           p.style.left = p.offsetLeft + Math.random()*10 +"px";
         }
@@ -48,7 +48,9 @@ window.addEventListener("load", () => {
         p.style.top = p.offsetTop + yInc +"px";
       } else {
         if ((10 < p.offsetLeft <= offsetWidth) && (10 < p.offsetTop <= offsetHeight)) newPoints.push(p);
-        p.style.left = p.offsetLeft + xInc +"px";
+        else {
+          p.style.left = p.offsetTop - Math.random()*(i%15) +"px";
+        }
         p.style.top = p.offsetTop + yInc +"px";
       }
     });
