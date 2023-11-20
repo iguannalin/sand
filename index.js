@@ -48,10 +48,10 @@ window.addEventListener("load", () => {
     if (Math.abs(event.alpha - orientation.alpha) < 10) {
       // do nothing
     } else if (event.alpha > orientation.alpha) {
-      xInc = 1;
+      xInc = -1;
       orientation.alpha = event.alpha;
     } else {
-      xInc = -1;
+      xInc = 1;
       orientation.alpha = event.alpha;
     }
     if (Math.abs(event.beta - orientation.beta) < 10) {
