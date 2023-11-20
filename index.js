@@ -50,7 +50,7 @@ window.addEventListener("load", () => {
           p.style.left = p.offsetLeft + xInc +"px";
           newPoints.push(p);
         } else {
-          console.log("reached bottom")
+          console.log("reached bottom");
           p.style.left = p.offsetLeft - Math.random()*(i%15) +"px";
         }
         p.style.top = p.offsetTop + yInc +"px";
@@ -64,24 +64,28 @@ window.addEventListener("load", () => {
   // all sensor orientation code below from -- https://sensor-js.xyz/demo.html
   function handleOrientation(event) {
     // alpha = x, beta = y, gamma = z
-    if (Math.abs(event.alpha - orientation.alpha) < 5) {
+    if (Math.abs(event.alpha - orientation.alpha) < 10) {
       // do nothing
       xInc = 0;
     } else if (event.alpha > orientation.alpha) {
+      console.log("moving left");
       xInc = -1;
       orientation.alpha = event.alpha;
     } else {
+      console.log("moving right");
       xInc = 1;
       orientation.alpha = event.alpha;
     }
-    if (Math.abs(event.beta - orientation.beta) < 5) {
+    if (Math.abs(event.beta - orientation.beta) < 10) {
       // do nothing
       yInc = xInc == 0 ? 1 : 0;
     } else if (event.beta > orientation.beta) {
       yInc = 1;
+      console.log("moving down");
       orientation.beta = event.beta;
     } else {
       yInc = -1;
+      console.log("moving up");
       orientation.beta = event.beta;
     }
     if (!isMoving) handleMovePoints();
@@ -108,13 +112,13 @@ window.addEventListener("load", () => {
     }
   };
 
-  setInterval(() => {
-    const span = document.createElement("span");
-    span.innerHTML = ".";
-    span.style.top = window.innerHeight/2+"px";
-    span.style.left = window.innerWidth/2+"px";
-    points.push(span);
-    container.appendChild(span);
-  }, 500);
+  // setInterval(() => {
+  //   const span = document.createElement("span");
+  //   span.innerHTML = ".";
+  //   span.style.top = window.innerHeight/2+"px";
+  //   span.style.left = window.innerWidth/2+"px";
+  //   points.push(span);
+  //   container.appendChild(span);
+  // }, 500);
   if (!hasTouchScreen) setInterval(handleMovePoints, 10);
 });
