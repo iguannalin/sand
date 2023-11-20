@@ -105,8 +105,7 @@ window.addEventListener("load", () => {
       isRunning = true;
     }
   };
-
-  // if (hasTouchScreen) 
+  
   setInterval(() => {
     const span = document.createElement("span");
     span.innerHTML = ".";
@@ -115,5 +114,5 @@ window.addEventListener("load", () => {
     points.push(span);
     container.appendChild(span);
   }, 1000);
-  setInterval(handleMovePoints, 10);
+  if (!hasTouchScreen) setInterval(handleMovePoints, 10);
 });
