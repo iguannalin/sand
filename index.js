@@ -37,7 +37,6 @@ window.addEventListener("load", () => {
     let newPoints = [];
     isMoving = true;
     points.forEach((p, i) => {
-      console.log({hasTouchScreen, DeviceMotionEvent})
       if (!hasTouchScreen || !DeviceMotionEvent) { // desktop doesn't have sensor, so just move linearly
         if (p.offsetTop != offsetHeight) newPoints.push(p);
         else { // place in staggered final positions at the bottom of page
@@ -47,9 +46,12 @@ window.addEventListener("load", () => {
         if (Math.random() > 0.8) return; // stagger movements so it's non-linear
         p.style.top = p.offsetTop + yInc +"px";
       } else {
-        if ((10 < p.offsetLeft <= offsetWidth) && (10 < p.offsetTop <= offsetHeight)) newPoints.push(p);
-        else {
-          p.style.left = p.offsetTop - Math.random()*(i%15) +"px";
+        if ((10 < p.offsetLeft <= offsetWidth) && (10 < p.offsetTop <= offsetHeight)) {
+          p.style.left = p.offsetLeft + xInc +"px";
+          newPoints.push(p);
+        } else {
+          console.log("reached bottom")
+          p.style.left = p.offsetLeft - Math.random()*(i%15) +"px";
         }
         p.style.top = p.offsetTop + yInc +"px";
       }
@@ -62,7 +64,7 @@ window.addEventListener("load", () => {
   // all sensor orientation code below from -- https://sensor-js.xyz/demo.html
   function handleOrientation(event) {
     // alpha = x, beta = y, gamma = z
-    if (Math.abs(event.alpha - orientation.alpha) < 10) {
+    if (Math.abs(event.alpha - orientation.alpha) < 5) {
       // do nothing
       xInc = 0;
     } else if (event.alpha > orientation.alpha) {
@@ -72,7 +74,7 @@ window.addEventListener("load", () => {
       xInc = 1;
       orientation.alpha = event.alpha;
     }
-    if (Math.abs(event.beta - orientation.beta) < 10) {
+    if (Math.abs(event.beta - orientation.beta) < 5) {
       // do nothing
       yInc = xInc == 0 ? 1 : 0;
     } else if (event.beta > orientation.beta) {
@@ -105,7 +107,7 @@ window.addEventListener("load", () => {
       isRunning = true;
     }
   };
-  
+
   setInterval(() => {
     const span = document.createElement("span");
     span.innerHTML = ".";
@@ -113,6 +115,6 @@ window.addEventListener("load", () => {
     span.style.left = window.innerWidth/2+"px";
     points.push(span);
     container.appendChild(span);
-  }, 1000);
+  }, 500);
   if (!hasTouchScreen) setInterval(handleMovePoints, 10);
 });
