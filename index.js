@@ -37,6 +37,7 @@ window.addEventListener("load", () => {
     let newPoints = [];
     isMoving = true;
     points.forEach((p, i) => {
+      console.log({hasTouchScreen, DeviceMotionEvent})
       if (!hasTouchScreen || !DeviceMotionEvent) { // desktop doesn't have sensor, so just move linearly
         if (p.offsetTop != offsetHeight) newPoints.push(p);
         else {
@@ -51,7 +52,7 @@ window.addEventListener("load", () => {
         p.style.top = p.offsetTop + yInc +"px";
       }
     });
-    // console.log(xInc, yInc);
+    console.log(xInc, yInc);
     points = newPoints;
     isMoving = false;
   }
