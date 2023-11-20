@@ -112,13 +112,13 @@ window.addEventListener("load", () => {
     }
   };
 
-  // setInterval(() => {
-  //   const span = document.createElement("span");
-  //   span.innerHTML = ".";
-  //   span.style.top = window.innerHeight/2+"px";
-  //   span.style.left = window.innerWidth/2+"px";
-  //   points.push(span);
-  //   container.appendChild(span);
-  // }, 500);
+  setInterval(() => {
+    const span = document.createElement("span");
+    span.innerHTML = ".";
+    span.style.top = window.innerHeight/2+"px";
+    span.style.left = window.innerWidth/2+"px";
+    points.push(span);
+    container.appendChild(span);
+  }, 500);
   if (!hasTouchScreen) setInterval(handleMovePoints, 10);
 });
