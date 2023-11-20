@@ -34,12 +34,15 @@ window.addEventListener("load", () => {
   let isMoving = false;
 
   function handleMovePoints() {
+    let newPoints = [];
     isMoving = true;
     points.forEach((p) => {
+      if (p.offsetLeft != 0 && p.offsetTop != 0&& p.offsetRight != window.innerWidth && p.offsetBottom != window.innerHeight) newPoints.push(p);
       p.style.left = p.offsetLeft + xInc +"px";
       p.style.top = p.offsetTop + yInc +"px";
     });
     console.log(xInc, yInc);
+    points = newPoints;
     isMoving = false;
   }
   // all sensor orientation code below from -- https://sensor-js.xyz/demo.html
@@ -96,5 +99,5 @@ window.addEventListener("load", () => {
     span.style.left = window.innerWidth/2+"px";
     points.push(span);
     container.appendChild(span);
-  }, 2000);
+  }, 500);
 });
