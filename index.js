@@ -117,6 +117,6 @@ window.addEventListener("load", () => {
     span.style.left = window.innerWidth/2+"px";
     points.push(span);
     container.appendChild(span);
-  }, hasTouchScreen ? 500 : 1000);
+  }, 1000);
   if (!hasTouchScreen) setInterval(handleMovePoints, 10);
 });
