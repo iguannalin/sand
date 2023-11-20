@@ -60,7 +60,7 @@ window.addEventListener("load", () => {
     }
     if (Math.abs(event.beta - orientation.beta) < 10) {
       // do nothing
-      yInc = 0;
+      yInc = xInc == 0 ? 1 : 0;
     } else if (event.beta > orientation.beta) {
       yInc = 1;
       orientation.beta = event.beta;
