@@ -47,10 +47,8 @@ window.addEventListener("load", () => {
         p.style.top = p.offsetTop + yInc +"px";
       } else {
         if (p.offsetTop != (offsetHeight+200)) {
-          p.style.left = p.offsetLeft + xInc +"px";
+          p.style.left = Math.max(0, Math.min(p.offsetLeft + xInc, offsetWidth)) +"px";
           newPoints.push(p);
-        } else {
-          p.style.left = p.offsetLeft - Math.random()*(i%15) +"px";
         }
         p.style.top = p.offsetTop + yInc +"px";
       }
