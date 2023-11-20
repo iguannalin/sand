@@ -38,7 +38,8 @@ window.addEventListener("load", () => {
     points.forEach((p) => {
       p.style.left = p.offsetLeft + xInc +"px";
       p.style.top = p.offsetTop + yInc +"px";
-    })
+    });
+    isMoving = false;
   }
   // all sensor orientation code below from -- https://sensor-js.xyz/demo.html
   function handleOrientation(event) {
