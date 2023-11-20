@@ -46,17 +46,15 @@ window.addEventListener("load", () => {
         if (Math.random() > 0.8) return; // stagger movements so it's non-linear
         p.style.top = p.offsetTop + yInc +"px";
       } else {
-        if ((10 < p.offsetLeft <= offsetWidth) && (10 < p.offsetTop <= offsetHeight)) {
+        if (p.offsetTop != offsetHeight) {
           p.style.left = p.offsetLeft + (xInc*2) +"px";
           newPoints.push(p);
         } else {
-          console.log("reached bottom");
           p.style.left = p.offsetLeft - Math.random()*(i%15) +"px";
         }
         p.style.top = p.offsetTop + yInc +"px";
       }
     });
-    console.log(xInc, yInc);
     points = newPoints;
     isMoving = false;
   }
