@@ -47,7 +47,7 @@ window.addEventListener("load", () => {
         p.style.top = p.offsetTop + yInc +"px";
       } else {
         if (p.offsetTop != (offsetHeight+200)) {
-          p.style.left = p.offsetLeft + (xInc*2) +"px";
+          p.style.left = p.offsetLeft + xInc +"px";
           newPoints.push(p);
         } else {
           p.style.left = p.offsetLeft - Math.random()*(i%15) +"px";
