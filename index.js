@@ -47,7 +47,7 @@ window.addEventListener("load", () => {
         p.style.top = p.offsetTop + yInc +"px";
       } else {
         if ((10 < p.offsetLeft <= offsetWidth) && (10 < p.offsetTop <= offsetHeight)) {
-          p.style.left = p.offsetLeft + xInc +"px";
+          p.style.left = p.offsetLeft + (xInc*2) +"px";
           newPoints.push(p);
         } else {
           console.log("reached bottom");
@@ -76,18 +76,18 @@ window.addEventListener("load", () => {
       xInc = 1;
       orientation.alpha = event.alpha;
     }
-    if (Math.abs(event.beta - orientation.beta) < 10) {
-      // do nothing
-      yInc = xInc == 0 ? 1 : 0;
-    } else if (event.beta > orientation.beta) {
-      yInc = 1;
-      console.log("moving down");
-      orientation.beta = event.beta;
-    } else {
-      yInc = -1;
-      console.log("moving up");
-      orientation.beta = event.beta;
-    }
+    // if (Math.abs(event.beta - orientation.beta) < 10) {
+    //   // do nothing
+    //   yInc = xInc == 0 ? 1 : 0;
+    // } else if (event.beta > orientation.beta) {
+    //   yInc = 1;
+    //   console.log("moving down");
+    //   orientation.beta = event.beta;
+    // } else {
+    //   yInc = -1;
+    //   console.log("moving up");
+    //   orientation.beta = event.beta;
+    // }
     if (!isMoving) handleMovePoints();
   }
 
@@ -119,6 +119,6 @@ window.addEventListener("load", () => {
     span.style.left = window.innerWidth/2+"px";
     points.push(span);
     container.appendChild(span);
-  }, 500);
+  }, hasTouchScreen ? 500 : 1000);
   if (!hasTouchScreen) setInterval(handleMovePoints, 10);
 });
