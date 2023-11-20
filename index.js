@@ -37,7 +37,7 @@ window.addEventListener("load", () => {
     let newPoints = [];
     // isMoving = true;
     points.forEach((p, i) => {
-      if (p.offsetTop != window.innerHeight) newPoints.push(p);
+      if (p.offsetTop != window.innerHeight - 25) newPoints.push(p);
       else {
         p.style.top = p.offsetTop - Math.random()*(i%15) +"px";
         p.style.left = p.offsetLeft + Math.random()*10 +"px";
