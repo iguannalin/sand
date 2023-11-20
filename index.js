@@ -60,17 +60,19 @@ window.addEventListener("load", () => {
   // all sensor orientation code below from -- https://sensor-js.xyz/demo.html
   function handleOrientation(event) {
     // alpha = x, beta = y, gamma = z
-    if (Math.abs(event.alpha - orientation.alpha) < 15) {
+    if (Math.abs(event.alpha - orientation.alpha) < 10) {
       // do nothing
       // xInc = 0;
     } else if (event.alpha > orientation.alpha) {
       // console.log("moving left");
       xInc = -1;
       orientation.alpha = event.alpha;
-    } else {
+    } else if (event.alpha < orientation.alpha) {
       // console.log("moving right");
       xInc = 1;
       orientation.alpha = event.alpha;
+    } else {
+      xInc = 0;
     }
     // if (Math.abs(event.beta - orientation.beta) < 10) {
     //   // do nothing
