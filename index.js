@@ -29,7 +29,7 @@ window.addEventListener("load", () => {
 
   let points = [];
   let orientation = {alpha:0,beta:0};
-  let xInc = 1;
+  let xInc = 0;
   let yInc = 1;
   let isMoving = false;
 
@@ -47,6 +47,7 @@ window.addEventListener("load", () => {
     // alpha = x, beta = y, gamma = z
     if (Math.abs(event.alpha - orientation.alpha) < 10) {
       // do nothing
+      xInc = 0;
     } else if (event.alpha > orientation.alpha) {
       xInc = -1;
       orientation.alpha = event.alpha;
@@ -56,6 +57,7 @@ window.addEventListener("load", () => {
     }
     if (Math.abs(event.beta - orientation.beta) < 10) {
       // do nothing
+      yInc = 0;
     } else if (event.beta > orientation.beta) {
       yInc = 1;
       orientation.beta = event.beta;
