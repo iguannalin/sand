@@ -79,7 +79,7 @@ window.addEventListener("load", () => {
     }
   };
 
-  setInterval(() => {
+  if (hasTouchScreen) setInterval(() => {
     const span = document.createElement("span");
     span.innerHTML = ".";
     span.style.top = window.innerHeight/2+"px";
