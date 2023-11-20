@@ -62,12 +62,13 @@ window.addEventListener("load", () => {
     // alpha = x, beta = y, gamma = z
     if (Math.abs(event.alpha - orientation.alpha) < 10) {
       // do nothing
+      xInc = 0;
     } else if (event.alpha > orientation.alpha) {
-      console.log("moving left");
+      // console.log("moving left");
       xInc = -1;
       orientation.alpha = event.alpha;
     } else {
-      console.log("moving right");
+      // console.log("moving right");
       xInc = 1;
       orientation.alpha = event.alpha;
     }
