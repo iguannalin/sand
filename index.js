@@ -109,7 +109,17 @@ window.addEventListener("load", () => {
   //     isRunning = true;
   //   }
   // };
+  var lastTime = 0;
 
+  function getInfo() {
+      if ( Math.floor((new Date() - lastTime)/60000) < 2 ) {
+              // get from variable
+              location.reload();
+      } else {
+          // get from url
+          lastTime =  new Date();
+      }
+  }
   setInterval(() => {
     const span = document.createElement("span");
     span.innerHTML = ".";
@@ -117,6 +127,7 @@ window.addEventListener("load", () => {
     span.style.left = window.innerWidth/2+"px";
     points.push(span);
     container.appendChild(span);
+    getInfo();
   }, 1000);
   setInterval(handleMovePoints, 10);
 });
