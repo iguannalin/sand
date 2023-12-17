@@ -31,7 +31,7 @@ window.addEventListener("load", () => {
   let yInc = 1;
   let isMoving = false;
   let offsetWidth = window.innerWidth - 10;
-  let offsetHeight = window.innerHeight - 25;
+  let offsetHeight = window.innerHeight - 100;
 
   function handleMovePoints() {
     let newPoints = [];

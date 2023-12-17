@@ -16,6 +16,7 @@ body {
   background-color: var(--main-bg-color);
   color: var(--main-text-color);
   text-shadow: var(--shadow-color) -2px 2px 8px;
+  overflow: hidden;
 }
 
 #container {
