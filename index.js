@@ -110,12 +110,16 @@ window.addEventListener("load", () => {
   //   }
   // };
 
+  var lastTime = new Date();
   setInterval(() => {
     const span = document.createElement("span");
     span.innerHTML = ".";
     span.style.top = window.innerHeight/2+"px";
     span.style.left = window.innerWidth/2+"px";
     points.push(span);
+    if (Math.floor((new Date() - lastTime)/60000) >= 1 ) {
+      location.reload();
+    }
     container.appendChild(span);
   }, 1000);
   setInterval(handleMovePoints, 10);
